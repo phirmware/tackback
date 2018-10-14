@@ -23,6 +23,14 @@ router.post('/delete',(req,res)=>{
         res.send({statusText:'delete succesfull',statusCode:200});
     }).catch(err=>{
         res.send('Notin come out');
+    });
+});
+
+router.get('/:id',(req,res)=>{
+    db.service.findOne({_id:req.params.id}).then(service=>{
+        res.json(service);
+    }).catch(err=>{
+        res.send(err);
     })
 })
 
