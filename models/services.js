@@ -15,7 +15,7 @@ var servicesSchema = new mongoose.Schema({
     },
     service_heading:{
         type:String,
-        default:''
+        default:'Your caption goes here!'
     },
     service_summary:{
         type:String,
@@ -23,7 +23,7 @@ var servicesSchema = new mongoose.Schema({
     },
     service_details:{
         type:String,
-        default:''
+        default:'Your details go here'
     }
 });
 

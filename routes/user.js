@@ -74,7 +74,7 @@ AuthController.login = async (req, res) => {
                     res.send(err);
                 }
                 // generate a signed jwt web token with the contents of user object and return it in the response
-                const token = jwt.sign({ id: user.id, email: user.email, username: user.username }, 'Tmx8Y=fEn!A2KF=5cU2#&UaHMJweeUcTSWN5-6pXTUEHpu?Yhv', { expiresIn: "5h" });
+                const token = jwt.sign({ id: user.id, email: user.email, username: user.username }, 'Tmx8Y=fEn!A2KF=5cU2#&UaHMJweeUcTSWN5-6pXTUEHpu?Yhv', { expiresIn: "24h" });
                 db.user.find({ username: req.body.username }).then((user) => {
                     res.send({ token: token, email: req.body.email, username: req.body.username, statusCode: 200, statusText: 'Successful login' });
                 });

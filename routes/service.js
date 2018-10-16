@@ -34,4 +34,50 @@ router.get('/:id',(req,res)=>{
     })
 })
 
+// edit section
+
+// edit name of service
+router.post('/nameofservice/:id',(req,res)=>{
+    db.service.findById(req.params.id).then(service=>{
+        service.name_of_service = req.body.name_of_service;
+        service.save();
+        res.send({statusText:'Updated',statusCode:200});
+    }).catch(err=>{
+        res.send(err);
+    });
+});
+
+//edit service heading
+router.post('/serviceheading/:id',(req,res)=>{
+    db.service.findById(req.params.id).then(service=>{
+        service.service_heading = req.body.service_heading;
+        service.save();
+        res.send({statusText:'Updated',statusCode:200});
+    }).catch(err=>{
+        res.send(err);
+    });
+});
+
+//edit service details
+router.post('/servicedetails/:id',(req,res)=>{
+    db.service.findById(req.params.id).then(service=>{
+        service.service_details = req.body.service_details;
+        service.save();
+        res.send({statusText:'Updated',statusCode:200});
+    }).catch(err=>{
+        res.send(err);
+    });
+});
+
+//edit service summary
+router.post('/servicesummary/:id',(req,res)=>{
+    db.service.findById(req.params.id).then(service=>{
+        service.service_summary = req.body.service_summary;
+        service.save();
+        res.send({statusText:'Updated',statusCode:200});
+    }).catch(err=>{
+        res.send(err);
+    });
+});
+
 module.exports = router;
