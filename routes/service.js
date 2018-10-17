@@ -80,4 +80,12 @@ router.post('/servicesummary/:id',(req,res)=>{
     });
 });
 
+//search for service
+router.post('/search',(req,res)=>{
+    db.service.find({name_of_service:req.body.search}).then(services=>{
+        res.json(services);
+    }).catch(err=>{
+        res.send(err);
+    });
+})
 module.exports = router;
