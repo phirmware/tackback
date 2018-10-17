@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var express =  require('express');
 
 var notificationSchema = new mongoose.Schema({
     userId:{
