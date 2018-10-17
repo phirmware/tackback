@@ -3,6 +3,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 var usersRoutes = require('./routes/user');
 var serviceRoutes = require('./routes/service');
+var notificationRoutes = require('./routes/notification');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 const passport = require('passport');
@@ -26,6 +27,7 @@ app.use(cors());
 // set api prefix for users route
 app.use('/api/', usersRoutes);
 app.use('/api/service',serviceRoutes);
+app.use('/api/notifications',notificationRoutes);
 
 //listen 
 app.listen(port, () => {

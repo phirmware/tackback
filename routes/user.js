@@ -38,7 +38,7 @@ router.post("/signup", (req, res) => {
         req.body.password,
         (err, user) => {
             if (err) {
-                res.send({message:'This shit aint working'});
+                res.send({message:err});
             } else {
                 res.json({ message: 'successfully registered' });
             }
