@@ -82,10 +82,17 @@ router.post('/servicesummary/:id',(req,res)=>{
 
 //search for service
 router.post('/search',(req,res)=>{
-    db.service.find({name_of_service:req.body.search}).then(services=>{
+    const regex = new RegExp(escapeRegex(req.body.search), 'gi');
+    db.service.find({service_details:regex}).then(services=>{
         res.json(services);
     }).catch(err=>{
         res.send(err);
     });
-})
+});
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
+
 module.exports = router;
