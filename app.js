@@ -7,6 +7,8 @@ var notificationRoutes = require('./routes/notification');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 const passport = require('passport');
+app.use(express.static(__dirname + '/public'));
+
 
 
 app.use(require('express-session')({

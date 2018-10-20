@@ -24,7 +24,8 @@ var servicesSchema = new mongoose.Schema({
     service_details:{
         type:String,
         default:'Your details go here'
-    }
+    },
+    images:[]
 });
 
 var Service = mongoose.model('service',servicesSchema);

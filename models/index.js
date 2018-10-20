@@ -9,3 +9,4 @@ mongoose.Promise = Promise;
 module.exports.user = require('./user');
 module.exports.service = require('./services');
 module.exports.notifications = require('./notification')
+

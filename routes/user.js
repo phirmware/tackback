@@ -18,7 +18,7 @@ passport.deserializeUser(db.user.deserializeUser());
 
 //test app
 router.get('/',(req,res)=>{
-    res.send('App Working!');
+    res.send(req.headers.host);
 });
 
 
