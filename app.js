@@ -4,11 +4,19 @@ var port = process.env.PORT || 3000;
 var usersRoutes = require('./routes/user');
 var serviceRoutes = require('./routes/service');
 var notificationRoutes = require('./routes/notification');
+var messageRoutes = require('./routes/message');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+let http = require('http');
+let server = http.Server(app);
 const passport = require('passport');
+let socketIO = require('socket.io');
+let io = socketIO(server);
 app.use(express.static(__dirname + '/public'));
 
+io.on('connection', (socket) => {
+    console.log('user connected');
+});
 
 
 app.use(require('express-session')({
@@ -30,9 +38,9 @@ app.use(cors());
 app.use('/api/', usersRoutes);
 app.use('/api/service',serviceRoutes);
 app.use('/api/notifications',notificationRoutes);
+app.use('/api/messages',messageRoutes);
 
 //listen 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`listening at port ${port}`);
 });
-
