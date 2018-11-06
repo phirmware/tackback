@@ -33,11 +33,29 @@ router.post('/inbox',(req,res)=>{
 router.post('/send',(req,res)=>{
     db.messages.findById(req.body.id).then(mess=>{
         mess.messages.push({message:req.body.message,time_sent:req.body.time,senderId:req.body.sender});
+
         mess.save();
-        res.send({statusCode:200});
+        res.send({statusCode:200 , message:mess});
     }).catch(err=>{
         res.send({statusCode:400});
     });
 });
+
+router.post('/find-inbox',(req,res)=>{
+    db.messages.findById(req.body.id).then(mess=>{
+        res.json(mess);
+    }).catch(err=>{
+        res.send({statusCode:400});
+    });
+});
+
+
+router.post('/delete-chat',(req,res)=>{
+    db.messages.findByIdAndDelete(req.body.id).then(mess=>{
+        res.json(mess);
+    }).catch(err=>{
+        ({statusCode:400});
+    })
+})
 
 module.exports = router;
