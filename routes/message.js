@@ -49,6 +49,14 @@ router.post('/find-inbox',(req,res)=>{
     });
 });
 
+router.post('/find-response',(req,res)=>{
+    db.messages.find(req.body).then(mess=>{
+        res.json(mess);
+    }).catch(err=>{
+        res.send({statusCode:400});
+    });
+});
+
 
 router.post('/delete-chat',(req,res)=>{
     db.messages.findByIdAndDelete(req.body.id).then(mess=>{
