@@ -8,17 +8,18 @@ var messageRoutes = require('./routes/message');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 let http = require('http');
-let server = http.Server(app);
+let server = http.createServer(app);
 const passport = require('passport');
 let socketIO = require('socket.io');
 let io = socketIO(server);
 app.use(express.static(__dirname + '/public'));
-
+app.set('io',io);
 io.on('connection', (socket) => {
     console.log('user connected');
 });
+var line = __dirname + '/public/tack/dist/tack'
 
-
+app.use(express.static(line));
 app.use(require('express-session')({
     secret: 'Tmx8Y=fEn!A2KF=5cU2#&UaHMJweeUcTSWN5-6pXTUEHpu?Yhv',
     resave: false,
@@ -39,6 +40,11 @@ app.use('/api/', usersRoutes);
 app.use('/api/service',serviceRoutes);
 app.use('/api/notifications',notificationRoutes);
 app.use('/api/messages',messageRoutes);
+
+app.get('*',(req,res)=>{
+    res.sendFile(line + '/index.html')
+});
+
 
 //listen 
 server.listen(port, () => {

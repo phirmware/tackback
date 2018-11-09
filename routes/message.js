@@ -31,10 +31,12 @@ router.post('/inbox',(req,res)=>{
 });
 
 router.post('/send',(req,res)=>{
+    const io = req.app.get('io');
     db.messages.findById(req.body.id).then(mess=>{
         mess.messages.push({message:req.body.message,time_sent:req.body.time,senderId:req.body.sender});
-
-        mess.save();
+        mess.save().then(()=>{
+            io.emit('newMessage');
+        });
         res.send({statusCode:200 , message:mess});
     }).catch(err=>{
         res.send({statusCode:400});

@@ -3,7 +3,9 @@ const router = express.Router();
 const db = require("../models");
 
 router.post('/new', (req, res) => {
+    const io = req.app.get('io');
     db.notifications.create(req.body).then(notification => {
+        io.emit('newNotificationAdded');
         res.json({ statusText: 'Successfully sent', statusCode: 200 });
     }).catch(err => {
         res.send(err);
