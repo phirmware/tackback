@@ -17,7 +17,7 @@ app.set('io',io);
 io.on('connection', (socket) => {
     console.log('user connected');
 });
-var line = __dirname + '/public/tack/dist/tack'
+var line = __dirname + '/public/dist/tack'
 
 app.use(express.static(line));
 app.use(require('express-session')({
